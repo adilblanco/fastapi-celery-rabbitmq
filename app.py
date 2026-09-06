@@ -1,5 +1,8 @@
+from pathlib import Path
+
 from celery.result import AsyncResult
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 from tasks import app as celery_app
@@ -7,11 +10,17 @@ from tasks import process
 
 
 app = FastAPI(title="Découvrir FastAPI, Celery et RabbitMQ")
+index_file = Path(__file__).with_name("index.html")
 
 
 class ProcessRequest(BaseModel):
     x: int
     y: int
+
+
+@app.get("/", include_in_schema=False)
+def index():
+    return FileResponse(index_file)
 
 
 @app.post("/tasks", status_code=202)
@@ -21,7 +30,7 @@ def submit_task(request: ProcessRequest):
 
     return {
         "task_id": task.id,
-        "status": "submitted",
+        "status": task.status,
     }
 
 

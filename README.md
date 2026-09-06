@@ -9,6 +9,7 @@ docker compose up --build
 ```
 
 - API : <http://localhost:8000/docs>
+- Interface : <http://localhost:8000>
 - RabbitMQ : <http://localhost:15672>
 - RabbitMQ login : `celery` / `celery`
 
