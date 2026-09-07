@@ -1,6 +1,9 @@
 # FastAPI, Celery and RabbitMQ
 
 Un exemple simple pour exécuter une tâche Celery depuis une API FastAPI.
+- **RabbitMQ** est le broker : il transporte et garde les messages en attente.
+- **Celery** gère les tâches et les workers qui les exécutent.
+- **FastAPI** reçoit les requêtes HTTP et délègue les traitements.
 
 ## Start
 

@@ -6,10 +6,7 @@ from celery import Celery
 
 app = Celery(
     "tasks",
-    broker=os.getenv(
-        "CELERY_BROKER_URL",
-        "amqp://celery:celery@rabbitmq:5672//",
-    ),
+    broker=os.getenv("CELERY_BROKER_URL", "amqp://celery:celery@rabbitmq:5672//"),
     backend=os.getenv("CELERY_RESULT_BACKEND", "rpc://"),
 )
 
